@@ -13,7 +13,7 @@ body{
 .Background{
     position: fixed;
     inset: 0;
-    background: url(2.jpg);
+    background: url(Images/2.jpg);
     background-size: cover;
     z-index: 0;
 }
@@ -63,12 +63,16 @@ body{
 }
 
 .PlayButton{
+    width: 160px;       
+    height: 160px;      
+    background-color: #F3A12E; 
+    border: none;       
+    border-radius: 50%; 
+    cursor: pointer ; 
     color: #1D2D37;
-    background-color: #F3A12E;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 100px   ;
+    font-size: 2rem;
 }
+
 
 .Appname{
     color: #F3A12E;
