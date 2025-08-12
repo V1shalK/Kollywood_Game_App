@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    overflow: hidden; /*overflow is hid , so there is no scrolling */
+}
+
+.Background{
+    position: fixed;
+    inset: 0;
+    background: url(2.jpg);
+    background-size: cover;
+    z-index: 0;
+}
+
+.Overlay.bg{
+    position:fixed;
+    background-color: rgba(65, 28, 28, 0.2);
+    z-index: 1;
+    inset: 0;
+}
+
+.Container{
+    position: relative;
+    height: 100vh;  
+}
+
+.header{
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+
+.footer{
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+
+.Profilecontainer,.PlayerScore,.Settings_icon{
+    color: #1D2D37;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-radius: 24px;
+    background-color: #F3A12E;
+    padding: 10px 20px;
+    border: none;
+}
+
+.PlayButton{
+    color: #1D2D37;
+    background-color: #F3A12E;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 100px   ;
+}
+
+.Appname{
+    color: #F3A12E;
+    font-family: 'Lucida Sans Unicode';
+    font-size: 3rem;
+    text-shadow: 2px 2px 5px rgba(0,0,0,1);
+    margin-bottom: 45px;
+}
