@@ -62,16 +62,20 @@ body{
     border: none;
 }
 
-.PlayButton{
-    width: 160px;       
-    height: 160px;      
-    background-color: #F3A12E; 
-    border: none;       
-    border-radius: 50%; 
-    cursor: pointer ; 
-    color: #1D2D37;
-    font-size: 2rem;
+.PlayButton {
+    display: inline-block;
+    width: 190px;
+    height: 190px;
+    background-image: url("Images/playbutton.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #F3A12E;
+    border-radius: 60%;
+    cursor: pointer;
+    text-decoration: none   ;
 }
+
 
 
 .Appname{
