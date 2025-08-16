@@ -4,13 +4,16 @@
     box-sizing: border-box;
 }
 
+
+/* ----------- Mainscreen Styles----------- */
+
 body{
     font-family: Arial, sans-serif;
     height: 100vh;
     overflow: hidden; /*overflow is hid , so there is no scrolling */
 }
 
-.Background{
+.Background_mainscreen{
     position: fixed;
     inset: 0;
     background: url(Images/2.jpg);
@@ -21,7 +24,7 @@ body{
 .Overlay.bg{
     position:fixed;
     background-color: rgba(65, 28, 28, 0.2);
-    z-index: 1;
+    z-index: -1;
     inset: 0;
 }
 
@@ -37,6 +40,7 @@ body{
     right: 20px;
     display: flex;
     justify-content: space-between;
+    z-index: 2;
 }
 
 .main{
@@ -45,21 +49,42 @@ body{
     top: 50%;
     transform: translate(-50%,-50%);
     text-align: center;
+    z-index: 2;
 }
 
 .footer{
     position: fixed;
-    bottom: 20px;
+    bottom: 30px;
     left: 20px;
+    z-index: 2;
 }
 
-.Profilecontainer,.PlayerScore,.Settings_icon{
+
+.Profilecontainer,.PlayerScore{
     color: #1D2D37;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border-radius: 24px;
     background-color: #F3A12E;
     padding: 10px 20px;
     border: none;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.Settings_icon{
+    background-image: url(Images/Settings.png);
+    height: 35px;
+    width: 35px;
+    background-size: cover;
+    display: inline-block;
+    cursor: pointer;
+
+}
+
+.Profilecontainer:hover ,
+.PlayerScore:hover{
+    background-color: #b36e0e ;
+
 }
 
 .PlayButton {
@@ -72,11 +97,9 @@ body{
     background-position: center;
     background-color: #F3A12E;
     border-radius: 60%;
-    cursor: pointer;
+    cursor: pointer;  
     text-decoration: none   ;
 }
-
-
 
 .Appname{
     color: #F3A12E;
@@ -84,4 +107,83 @@ body{
     font-size: 3rem;
     text-shadow: 2px 2px 5px rgba(0,0,0,1);
     margin-bottom: 45px;
+    z-index: 3;
+}
+
+
+/* --------------------- Mode Screen Styles ---------------*/
+
+.Background_modeScreen{
+    background: url(Images/Background_mode_screen.jpg);
+    filter: brightness(50%);
+    background-size : cover;
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+}
+
+.mode-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 595px;
+    margin: 80;
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    left: 681px;
+    top: 305px;
+}
+
+.mode-option{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mode-option img{
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+    margin-bottom: 25px;
+    border-radius: 15px;
+}
+
+.singleplayer,.multiplayer{
+    padding: 20px 90px;
+    border-radius: 24px;
+    border: none;
+    background-color: #F3A12E;
+    color: #1D2D37;
+    cursor: pointer;
+    font-size: large;
+    font-family: 'Lucida Sans';
+}
+
+.singleplayer:hover,
+.multiplayer:hover{
+    background-color: #b36e0e;
+}
+
+.next_container{
+    display: flex;
+    position: fixed;
+    top: 400px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.next{
+    display: inline-block;
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    background-image: url("Images/Next Button.png");
+    top: 500px;
+    left: 640px;
+
 }
