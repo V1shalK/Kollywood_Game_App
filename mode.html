@@ -3,40 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Assets/mode.css">
+    <link rel="stylesheet" href="Assets/Global.css">
     <title>Mode</title>
 </head>
 <body>
-    <div class="Background_modeScreen"></div>
+    <div class="Background Background_image"></div>
     <div class="Overlay bg"></div>
+
     <div class="Container">
         <header class="header">
-            <button class="Profilecontainer">Player Profile</button>
-            <button class="PlayerScore">Player Score</button>
+            <button id ="profilebtn" class="btn btn-primary">Player Profile</button>
+            <button class="btn btn-primary">Player score</button>
         </header>
+
+        <h1 class="Appname Appname_position">K ` Wood</h1>
+
         <main class="mode-container">
-            
             <div class="mode-option">
                 <img src="Images/5.jpg" alt="Single Player">
-                <button class="singleplayer">Single Player</button>
+                <button id="single-player" class="singleplayer">Single Player</button>
             </div>
 
             <div class="mode-option">
                 <img src="Images/4.jpg" alt="Multi Player">
-                <button class="multiplayer">MultiPlayer</button>
+                <button id="multi-player" class="multiplayer">MultiPlayer</button>
             </div>
+            <div id="next-btn-mode" class="next_container">
+            <a class="next"></a>
+        </div>
 
         </main>
 
-        <div class="next-container">
-            <a href="mode2.html" class="next"></a>
+    <footer class="footer">
+            <a class="icon-btn icon-settings " aria-label="Settings"></a>
+        </footer>
         </div>
 
-        <footer class="footer">
-            <a class="Settings_icon"></a>
-
-        </footer>
-    <div></div>
-    
+        <script src="script.js"></script>   
 </body>
 </html>

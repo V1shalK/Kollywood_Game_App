@@ -1,4 +1,65 @@
+// ----- Mode Page -----
+const singlePlayer = document.getElementById("single-player");
+const multiPlayer = document.getElementById("multi-player");
+const nextModeBtn = document.getElementById("next-btn-mode");
+
+if (singlePlayer && multiPlayer && nextModeBtn) {
+    let selectedMode = null;
+
+    singlePlayer.addEventListener("click", () => {
+        selectedMode = "single";
+        singlePlayer.classList.add("selected");
+        multiPlayer.classList.remove("selected");
+    });
+
+    multiPlayer.addEventListener("click", () => {
+        selectedMode = "multi";
+        multiPlayer.classList.add("selected");
+        singlePlayer.classList.remove("selected");
+    });
+
+    nextModeBtn.addEventListener("click", () => {
+        if (!selectedMode) {
+            alert("Please select a mode first!");
+            return;
+        }
+        window.location.href = selectedMode === "single" ? "gamescreen.html" : "mode2.html";
+    });
+}
+
+// ----- Mode2 Page -----
+const systemBtn = document.getElementById("system-btn");
+const customBtn = document.getElementById("custom-btn");
+const nextMode2Btn = document.getElementById("next-btn");
+
+if (systemBtn && customBtn && nextMode2Btn) {
+    let selectedMode2 = null;
+
+    systemBtn.addEventListener("click", () => {
+        selectedMode2 = "system";
+        systemBtn.classList.add("selected");
+        customBtn.classList.remove("selected");
+    });
+
+    customBtn.addEventListener("click", () => {
+        selectedMode2 = "custom";
+        customBtn.classList.add("selected");
+        systemBtn.classList.remove("selected");
+    });
+
+    nextMode2Btn.addEventListener("click", () => {
+        if (!selectedMode2) {
+            alert("Please select an option first!");
+            return;
+        }
+        window.location.href = "game.html";
+    });
+}
+
+
+
 // -------------------- GAME LOGIC --------------------
+// -------------------- GAME DATA --------------------
 
 // Correct answers per category
 const answers = {
@@ -18,9 +79,8 @@ const guessedCells = {
 
 // Footer text for KOLLYWOOD
 let footer = document.querySelector(".Lives");
-let kollyLetters = footer.innerText.split(""); // ['K','O','L','L','Y','W','O','O','D']
-
-let strikeIndex = 0; // tracks which letter to strike next
+let kollyLetters = footer.innerText.split(""); 
+let strikeIndex = 0; 
 
 // -------------------- POPUP CREATION --------------------
 const popup = document.createElement('div');
@@ -36,21 +96,49 @@ popup.style.cssText = `
 popup.innerHTML = `
     <div style="
         background: rgba(255,255,255,0.25); 
-        backdrop-filter: blur(10px); 
-        padding: 50px 70px; 
+        backdrop-filter: blur(8px); 
+        padding: 40px 50px; 
         border-radius: 20px; 
-        text-align:center; 
-        font-size: 1.5rem;
+        display:flex; 
+        flex-direction: column; 
+        align-items:center; 
+        justify-content:center; 
+        gap:15px;
+        min-width: 500px; 
+        max-width: 90%;
+        font-size: 1.2rem;
         color: #000;
-        position: relative;
-        min-width: 350px;
     ">
-        <p id="popup-text">Enter your guess:</p>
-        <input type="text" id="user-input" placeholder="Type your guess here" style="font-size:1rem; padding:10px; margin-top:20px; width: 80%;">
-        <br><br>
-        <button id="submit-guess" style="padding:12px 25px; font-size:1rem; cursor:pointer; border:none; border-radius:10px; background-color:#68B087; color:white;">Submit</button>
+        <!-- Popup text -->
+        <span id="popup-text" style="font-size:1.3rem;">Enter your guess:</span>
+
+        <!-- Input + Submit button in one overlapping container -->
+        <div style="position: relative; width: 100%; max-width: 400px;">
+            <input type="text" id="user-input" placeholder="Type your Guess" style="
+                width: 100%; 
+                font-size:1.5rem; 
+                padding:12px 20px; 
+                border-radius:24px; 
+                border:none;
+                outline:none;
+            ">
+            <button id="submit-guess" style="
+                position: absolute;
+                top: 50%;
+                right: 0;
+                transform: translateY(-50%);
+                padding:18px 20px; 
+                font-size:1rem; 
+                cursor:pointer; 
+                border:none; 
+                border-radius:24px; 
+                background-color:#68B087; 
+                color:white;
+            ">Submit</button>
+        </div>
     </div>
 `;
+
 document.body.appendChild(popup);
 
 // Grab popup elements
@@ -106,6 +194,27 @@ function checkGuess() {
         }
     }
 
+    // Check win condition
+    const allGuessed = Object.values(guessedCells).every(v => v === true);
+    if(allGuessed){
+        setTimeout(() => {
+            if(confirm("🎉 Congratulations! You won! Do you want to play again?")){
+                location.reload();
+            }
+        }, 300);
+        return;
+    }
+
+    // Check lose condition
+    if(strikeIndex >= 9){
+        setTimeout(() => {
+            if(confirm("😢 Sorry! You lost. Do you want to play again?")){
+                location.reload();
+            }
+        }, 300);
+        return;
+    }
+
     // Close popup automatically after submission (short delay to show feedback)
     setTimeout(() => {
         popup.style.display = 'none';
@@ -123,7 +232,7 @@ tableCells.forEach(cell => {
 // Popup submit button
 submitBtn.addEventListener('click', checkGuess);
 
-// Optional: close popup if click outside content (can keep or remove)
+// Optional: close popup if click outside content
 popup.addEventListener('click', (e) => {
     if(e.target === popup){
         popup.style.display = 'none';
