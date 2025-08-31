@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K`Wood</title>
+    <link rel="stylesheet" href="Assets/HomePage.css">
+    <link rel="stylesheet" href="Assets/Global.css">
+</head>
+<body>
+    <div class="Background Background_image"></div>
+    <div class="Overlay bg"></div>
+
+    <div class="Container">
+        <header class="header">
+            <a href="dashboard.html"  id ="profilebtn" class="btn btn-primary"></a>
+            <button class="btn btn-primary"></button>
+        </header> 
+
+        <main class="main">
+            <h1 class="Appname">K ` Wood</h1>
+            <a href="mode.html" id="playbtn" class="play-btn" >    </a>
+        </main>
+
+        <footer class="footer">
+            <a class="icon-btn icon-settings " aria-label="Settings"></a>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        const token = localStorage.getItem("token");
+        if (!token) {
+            // User is not logged in, redirect back to login
+            window.location.href = "login.html";
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+
+
+.background_img{
+  background-image: url(Images/wp.jpg);
+}
+
+.appname_postion{
+  text-align: center;
+  flex: 1;
+}
+
+.return{
+  width: clamp(50px,8vw,50px);
+  height: clamp(50px,8vw,50px);
+  background: none;
+  border: none;
+  transition: transform 0.2s ease;
+}
+
+.return:hover{
+  transform: scale(1.05);
+}
+
+.player_profile_ticket{
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.main_db{
+  display:block;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 500px;
+}
+
+.player_ticket{
+  width: clamp(585px,8vw,850px);
+  height: clamp(220px,8vw,350px);
+  margin-top: 15px;
+}
+
+.player_name{
+  position: absolute;
+  font-family : 'Russo One',sans-serif;
+  letter-spacing: 2px;
+  font-weight: normal;
+  font-size: 3rem;
+  top: 15%;
+  left: 45%;
+  transform: translateX(-50%);
+  color: #738fa0;
+  text-transform: capitalize;
+  justify-content: center
+;
+
+}
+
+.unique_id{
+  position: absolute;
+  font-family: 'Russo One',sans-serif;
+  font-size: 1.3rem;
+  font-weight: normal;
+  bottom: 65%;
+  left: 45%;
+  transform: translateX(-50%);
+  color: #7395aa;
+}
+
+.player_avatar{
+  position: absolute;
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  top: 13.5%;
+  left: 59.5%;
+  filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, 0.5));
+}
+
+.gamesplayed{
+  justify-content: center;
+  align-items: center;
+  height: clamp(150px,8vw,70px);
+  width: clamp(150px,8vw,70px);
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: aliceblue;
+  border: 1rem;
+}
+

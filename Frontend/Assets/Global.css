@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Container{
+    position: relative;
+    min-height: 100vh;  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer{
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.Background{
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+}
+
+.Appname{
+    color: #F3A12E;
+    font-family: 'Russo One',sans-serif;
+    font-size: clamp(1.8rem, 5vw,3rem);
+    text-shadow: 2px 2px 5px rgba(0,0,0,1);
+    margin-bottom: 2rem;
+}
+
+.Overlay.bg{
+    position:fixed;
+    background-color: rgba(0,0,0,0.5);
+    z-index: -1;
+    inset: 0;
+}
+
+.btn{
+    font-family: "Russo One",sans-serif;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    font-size: 1.8em;
+    z-index: 1;
+    text-align: center;
+    text-decoration: none;
+    text-transform:capitalize ;
+    font-weight: lighter;
+}
+
+.btn-primary{
+    background-color: #F3A12E;
+    color: #1D2D37;
+    height: clamp(20px,30vw,40px);
+    width: clamp(20px,30vw,180px);
+    text-align: center;
+
+    
+}
+
+.btn:hover{
+    transform: scale(1.05);
+}
+
+.icon-btn{
+    height: 35px;
+    width: 35px;
+    display: inline-flex;
+    cursor: pointer;
+    transition: transform 0.2s ease ;
+    background-size: cover;
+    background-position: center;
+}
+
+.icon-settings{
+    background-image: url(../Images/Settings_icon.png);
+}
+
+.icon-btn:hover{
+    transform: scale(1.05);
+}
+
+
+/* Start hidden */
+.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Fade-in effect */
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
