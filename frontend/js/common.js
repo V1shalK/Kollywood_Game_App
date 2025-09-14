@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const usernameDisplayElement = document.getElementById("profilebtn");
     const userScoreElement = document.getElementById("userscore");
 
-    if (!token && window.location.pathname !== '/login.html') {
-        window.location.href = "login.html";
+    if (!token && window.location.pathname !== '/homepage.html') {
+        window.location.href = "homepage.html";
         return;
     }
 

@@ -1,40 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>K`Wood</title>
-    <link rel="stylesheet" href="Assets/HomePage.css">
-    <link rel="stylesheet" href="Assets/Global.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Login/Signup</title>
 </head>
 <body>
-    <div class="Background Background_image"></div>
-    <div class="Overlay bg"></div>
+  <h2>Signup</h2>
+  <form id="signupForm">
+    <input type="text" id="signupUsername" placeholder="Username" required><br>
+    <input type="email" id="signupEmail" placeholder="Email" required><br>
+    <input type="password" id="signupPassword" placeholder="Password" required><br>
+    <button type="submit">Sign Up</button>
+  </form>
 
-    <div class="Container">
-        <header class="header">
-            <a href="dashboard.html"  id ="profilebtn" class="btn btn-primary"></a>
-            <button class="btn btn-primary" id="userscore">Score: </button>
-        </header> 
+  <h2>Login</h2>
+  <form id="loginForm">
+    <input type="email" id="loginEmail" placeholder="Email" required><br>
+    <input type="password" id="loginPassword" placeholder="Password" required><br>
+    <button type="submit">Log In</button>
+  </form>
 
-        <main class="main">
-            <h1 class="Appname">K ` Wood</h1>
-            <a href="mode.html" id="playbtn" class="play-btn" >    </a>
-        </main>
+  <div id="message" style="margin-top:20px;color:green;"></div>
 
-        <footer class="footer">
-            <!-- <a class="icon-btn icon-settings " aria-label="Settings"></a> -->
-        </footer>
-    </div>
-    <script src="js/common.js" defer></script>
-    <script>
-        const token = localStorage.getItem("token");
-        if (!token) {
-            // User is not logged in, redirect back to login
-            window.location.href = "login.html";
-        }
-    </script>
-
+  <script src="js/login.js"></script>
 </body>
-
 </html>
