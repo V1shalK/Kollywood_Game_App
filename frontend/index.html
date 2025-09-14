@@ -14,7 +14,7 @@
     <div class="Container">
         <header class="header">
             <a href="dashboard.html"  id ="profilebtn" class="btn btn-primary"></a>
-            <button class="btn btn-primary"></button>
+            <button class="btn btn-primary" id="userscore">Score: </button>
         </header> 
 
         <main class="main">
@@ -23,10 +23,10 @@
         </main>
 
         <footer class="footer">
-            <a class="icon-btn icon-settings " aria-label="Settings"></a>
+            <!-- <a class="icon-btn icon-settings " aria-label="Settings"></a> -->
         </footer>
     </div>
-    <script src="script.js"></script>
+    <script src="js/common.js" defer></script>
     <script>
         const token = localStorage.getItem("token");
         if (!token) {

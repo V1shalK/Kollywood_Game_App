@@ -9,7 +9,7 @@ body{
 }
 
 .Background_image{
-    background: url(../Images/Background_mainscreen.jpg) center/cover no-repeat;
+    background: url("../Assets/Images/Background_mainscreen.jpg") center/cover no-repeat;
 }
 
 /* ======= Components ======*/
@@ -24,7 +24,7 @@ body{
     display: inline-block;
     width: clamp(120px,20vw,190px);
     height: clamp(120px,20vw,190px);
-    background: url("../Images/playbutton.png") center/cover no-repeat;
+    background: url("../Assets/Images/playbutton.png") center/cover no-repeat;
     background-color: #F3A12E;
     border-radius: 50%;
     cursor: pointer;  

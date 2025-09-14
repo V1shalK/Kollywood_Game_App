@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game-custom</title>
+    <link rel="stylesheet" href="Assets/Global.css">
+    <link rel="stylesheet" href="Assets/game.css">
+</head>
+<body>
+    <div class="Background Background_image"></div>
+    <div class="Overlay bg"></div>
+    <header class="header">
+        <button class="btn btn-primary game_score">Score:</button>
+        <div class="Guessbox">Click here to give inputs</div>
+        
+    </header>
+
+    <main class="game_main ">
+        
+        <div class="timer">
+            <img class="timer_image" src="Assets//Images/timer.png" alt="Timer">
+            <div id="main-timer-display" class="timer-overlay" style="display:none;">
+                <span id="minutes">05</span>:<span id="seconds">00</span>
+            </div>
+        </div>
+        <table class="Plustable">
+            <tr>
+                <td class="hero">?</td>
+                <td class="heroine">?</td>
+            </tr>
+            <tr>
+                <td class="movie">?</td>
+                <td class="song">?</td>
+            </tr>
+        </table>
+        <div class="hint">
+            <img class="hint_image" src="Assets/Images/hint_before.png" alt="Hint">
+        </div>
+    </main>
+
+    <div id="start-countdown-overlay">
+        <span id="start-countdown-number">5</span>
+    </div>
+
+    <footer class="Lives">KOLLYWOOD</footer>
+
+    <div id="input-popup" class="popup-overlay" style="display:none;">
+    <div class="popup-content">
+        <h2>Enter Your Custom Words</h2>
+        <div class="input-group">
+            <label for="hero-input">Hero:</label>
+            <input type="text" id="hero-input" placeholder="e.g., Rajinikanth">
+         </div>
+        <div class="input-group">
+            <label for="heroine-input">Heroine:</label>
+            <input type="text" id="heroine-input" placeholder="e.g., Nayanthara">
+        </div>
+        <div class="input-group">
+            <label for="movie-input">Movie:</label>
+            <input type="text" id="movie-input" placeholder="e.g., Sivaji">
+        </div>
+        <div class="input-group">
+            <label for="song-input">Song:</label>
+            <input type="text" id="song-input" placeholder="e.g., Balleilakka">
+        </div>
+        <button id="submit-custom-words">Start Game</button>
+        </div>
+    <script src="js/script-custom.js"></script>
+
+    <script></script>
+</body>
+</html>

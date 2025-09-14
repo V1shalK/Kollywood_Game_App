@@ -1,11 +1,11 @@
 
 .Background_image{
-    background: url("../Images/Background_mode_screen.jpg") center/cover no-repeat    ;
+    background: url("../Assets/Images/Background_mode_screen.jpg") center/cover no-repeat    ;
 
 }
 
 .Background_image_mode2{
-    background: url("../Images/Background_mode_screen.jpg") center/cover no-repeat;
+    background: url("../Assets/Images/Background_mode_screen.jpg") center/cover no-repeat;
 }
 
 .header{
@@ -17,7 +17,7 @@
 
 .Appname_position{
     text-align: center;
-    flex: 1;
+    margin-top: 1rem;
 }
 
 .mode-container {
@@ -36,12 +36,11 @@
 }
 
 .mode-option img {
-    width: min(300px, 40vw);  
+    width: min(250px, 40vw);  
     height: auto;
     margin-bottom: 1.5rem;
     border-radius: 15px;
 }
-
 
 .singleplayer,.multiplayer{
     padding: 1rem 3rem;
@@ -77,11 +76,11 @@
     display: flex;
     transform: translate(-50%,70%);
     margin-top: clamp(20px, 5vh, 80px);     
-    width: clamp(80px, 10vw, 150px);
-    height: clamp(80px, 10vw, 150px);
+    width: clamp(80px, 8rem, 150px);
+    height: clamp(80px, 10rem, 150px);
     background-size: contain;
     cursor: pointer;
-    background: url("../Images/Next_Button.png") no-repeat center;
+    background: url("../Assets/Images/Next_Button.png") no-repeat center;
     transition: transform 0.2s ease;
 }
 
@@ -97,7 +96,7 @@
     width: clamp(80px, 10vw, 160px);
     height: clamp(80px, 10vw, 160px);
     background-size: contain;
-    background: url("../Images/Mini_Play_Button.png") no-repeat center; 
+    background: url("../Assets/Images/Mini_Play_Button.png") no-repeat center; 
     cursor: pointer;
     border: none;
     

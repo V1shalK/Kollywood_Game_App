@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="Assets/Global.css">
+    <link rel="stylesheet" href="Assets/game.css">
+</head>
+<body>
+    <div class="Background Background_image"></div>
+    <div class="Overlay bg"></div>
+    <header class="header">
+        <button class="btn btn-primary game_score">Score:</button>
+        <div class="Guessbox">Tap the Letter to guess</div>
+        </a>
+        
+    </header>
+
+    <main class="game_main ">
+        
+        <div class="timer">
+            <img class="timer_image" src="Assets/Images/timer.png" alt="Timer">
+            <div id="main-timer-display" class="timer-overlay" style="display:none;">
+                <span id="minutes">05</span>:<span id="seconds">00</span>
+            </div>
+        </div>
+        <table class="Plustable">
+            <tr>
+                <td class="hero">?</td>
+                <td class="heroine">?</td>
+            </tr>
+            <tr>
+                <td class="movie">?</td>
+                <td class="song">?</td>
+            </tr>
+        </table>
+        <div class="hint">
+            <img class="hint_image" src="Assets/Images/hint_before.png" alt="Hint">
+        </div>
+    </main>
+    <div id="countdown-overlay">
+                <span id="countdown-number">3</span>
+    </div>  
+
+    <footer class="Lives">KOLLYWOOD</footer>
+
+    <script src="js/common.js" defer></script>
+    <script src="js/game.js" defer></script>
+
+</body>
+</html>
