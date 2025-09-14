@@ -3,12 +3,11 @@ const signupForm = document.getElementById("signupForm");
 const loginForm = document.getElementById("loginForm");
 const messageDiv = document.getElementById("message");
 
-// Your backend URL
-const BASE_URL = "http://localhost:3000";
+// Your deployed backend URL
+const BASE_URL = "https://kollywood-game-backend.onrender.com";
 
 // ---------------- SIGNUP ----------------
-// This part is fine, no changes needed here.
-if (signupForm) { // Add a check to prevent errors if the form isn't on the page
+if (signupForm) {
   signupForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -25,16 +24,17 @@ if (signupForm) { // Add a check to prevent errors if the form isn't on the page
 
       const data = await res.json();
       messageDiv.innerText = data.message || data.error;
+      messageDiv.style.color = res.ok ? "green" : "red";
     } catch (err) {
       console.error(err);
       messageDiv.innerText = "Error connecting to server";
+      messageDiv.style.color = "red";
     }
   });
 }
 
 // ---------------- LOGIN ----------------
-// Combine the two login event listeners into a single, clean function
-if (loginForm) { // Add a check for the login form
+if (loginForm) {
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     messageDiv.innerText = ""; // Clear previous messages
@@ -52,21 +52,17 @@ if (loginForm) { // Add a check for the login form
       const data = await res.json();
       console.log("Login response:", data);
 
-      if (res.ok) { // Check for a successful HTTP status code
+      if (res.ok) {
         messageDiv.innerText = "Login successful!";
         messageDiv.style.color = "green";
 
-        // IMPORTANT: Save both the token AND the username
+        // Save token and username
         localStorage.setItem("token", data.token);
-        localStorage.setItem("username", data.user.username); // <-- This is the key line!
+        localStorage.setItem("username", data.user.username);
 
         console.log("Redirecting to the game page...");
-        // Redirect to your main game page, e.g., 'game.html'
-        // I'll assume your game page is at ./game.html based on your previous code
-        window.location.href = "./index.html"; 
-        window.localStorage.href = "./mode.html";
+        window.location.href = "./index.html"; // Redirect to your main game page
       } else {
-        // Handle login failure
         messageDiv.style.color = "red";
         messageDiv.innerText = data.error || "Login failed.";
       }

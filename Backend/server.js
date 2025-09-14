@@ -5,7 +5,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
-const pool = require("./db"); // ✅ Your db.js should export a Pool using DATABASE_URL
+const pool = require("./db"); 
 
 const app = express();
 app.use(cors());

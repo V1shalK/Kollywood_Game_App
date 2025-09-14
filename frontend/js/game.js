@@ -1,6 +1,6 @@
-// game.js (updated)
+// game.js (updated for Render backend)
 document.addEventListener('DOMContentLoaded', () => {
-    const BASE_URL = 'http://localhost:3000';
+    const BASE_URL = "https://kollywood-game-backend.onrender.com";
     
     let correctData = null;
     let usedIds = JSON.parse(localStorage.getItem('used_game_ids')) || [];
@@ -75,16 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => popup.style.display = 'none', 300);
     }
 
-    // ---- REPLACED: unified async endGame inside the same scope ----
     async function endGame(message) {
         try {
             const token = localStorage.getItem('token');
             const username = localStorage.getItem('username');
 
-            // Only attempt to update if we have a username and some earned points
             if (username && typeof score === 'number' && score > 0) {
-                console.log("Sending score to server:", { username, score });
-
                 const response = await fetch(`${BASE_URL}/api/users/score`, {
                     method: 'PUT',
                     headers: {
@@ -96,23 +92,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const result = await response.json().catch(() => ({ error: 'Invalid JSON response' }));
 
-                if (response.ok) {
-                    console.log("Score updated on server:", result);
-                    // update userscore element in navbar (if available)
+                if (response.ok && result.newScore !== undefined) {
                     const userScoreElement = document.getElementById("userscore");
-                    if (userScoreElement && typeof result.newScore !== 'undefined') {
-                        userScoreElement.textContent = `Score: ${result.newScore}`;
-                    }
-                } else {
-                    console.warn("Server did not accept score update:", result);
+                    if (userScoreElement) userScoreElement.textContent = `Score: ${result.newScore}`;
                 }
-            } else {
-                console.warn("No username or score to send to server.", { username: localStorage.getItem('username'), score });
             }
         } catch (err) {
             console.error("Failed to update score on server:", err);
         } finally {
-            // cleanup per-game data and show ending popup
             localStorage.removeItem('currentGameData');
             showMessage(message, true);
         }
@@ -227,7 +214,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     submitBtn.addEventListener('click', checkGuess);
 
-    // Play again / exit buttons
     confirmYesBtn.addEventListener('click', () => {
         localStorage.removeItem('currentGameData');
         location.reload();

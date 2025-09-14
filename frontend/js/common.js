@@ -1,15 +1,17 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem("token");
     const usernameDisplayElement = document.getElementById("profilebtn");
-    const userScoreElement = document.getElementById("userscore"); // <-- Your score element
+    const userScoreElement = document.getElementById("userscore");
 
     if (!token && window.location.pathname !== '/login.html') {
         window.location.href = "login.html";
         return;
     }
 
+    const BASE_URL = "https://kollywood-game-backend.onrender.com"; // ✅ Updated backend URL
+
     try {
-        const response = await fetch("http://localhost:3000/api/users/me", {
+        const response = await fetch(`${BASE_URL}/api/users/me`, {
             headers: { "Authorization": `Bearer ${token}` }
         });
 

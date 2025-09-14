@@ -1,4 +1,7 @@
+// custom-game.js
 document.addEventListener('DOMContentLoaded', () => {
+    const BASE_URL = "https://kollywood-game-backend.onrender.com"; // Add this for future API use
+
     const guessbox = document.querySelector('.Guessbox');
     const popupOverlay = document.getElementById('input-popup');
     const submitButton = document.getElementById('submit-custom-words');
@@ -168,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function endGamePopup(message) {
-            // ✅ Reuse popup but in confirm mode
             showMessage(message, true);
         }
 
@@ -200,7 +202,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 cell.style.color = "green";
                 guessedCells[currentCategory] = true;
 
-                // ✅ WIN CHECK
                 if (Object.values(guessedCells).every(val => val === true)) {
                     setTimeout(() => endGamePopup("🎉 You guessed all correctly! Play again?"), 500);
                     return;
@@ -216,7 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     strikeIndex++;
                 }
 
-                // ✅ LOSS CHECK
                 if (strikeIndex >= kollyLetters.length) {
                     setTimeout(() => endGamePopup("😢 You lost! Play again?"), 500);
                     return;
@@ -226,16 +226,16 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(hideMessage, 500);
         }
 
-        document.querySelector('.hero').textContent = correctData.hero[0].toUpperCase();
-        document.querySelector('.heroine').textContent = correctData.heroine[0].toUpperCase();
-        document.querySelector('.movie').textContent = correctData.movie[0].toUpperCase();
-        document.querySelector('.song').textContent = correctData.song[0].toUpperCase();
+        // Initialize first letters
+        heroCell.textContent = correctData.hero[0].toUpperCase();
+        heroineCell.textContent = correctData.heroine[0].toUpperCase();
+        movieCell.textContent = correctData.movie[0].toUpperCase();
+        songCell.textContent = correctData.song[0].toUpperCase();
 
         const tableCells = document.querySelectorAll(".Plustable td");
         tableCells.forEach(cell => cell.addEventListener('click', openPopup));
         submitBtn.addEventListener('click', checkGuess);
 
-        // Replay / Exit buttons
         confirmYesBtn.addEventListener('click', () => location.reload());
         confirmNoBtn.addEventListener('click', () => window.location.href = "mode.html");
         popup.addEventListener('click', (e) => { if (e.target === popup) hideMessage(); });
