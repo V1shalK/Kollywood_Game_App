@@ -61,7 +61,7 @@ if (loginForm) {
         localStorage.setItem("username", data.user.username);
 
         console.log("Redirecting to the game page...");
-        window.location.href = "./index.html"; // Redirect to your main game page
+        window.location.href = "./homepage.html"; // Redirect to your main game page
       } else {
         messageDiv.style.color = "red";
         messageDiv.innerText = data.error || "Login failed.";
