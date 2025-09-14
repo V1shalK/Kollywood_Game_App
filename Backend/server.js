@@ -1,5 +1,6 @@
-require("dotenv").config(); // ✅ Load env first
-
+if (process.env.NODE_ENV !== 'production') {
+  require("dotenv").config();
+}
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
