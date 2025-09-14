@@ -10,14 +10,23 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ✅ Test DB connection on startup
+// -----------------------
+// DEBUG: Check environment variables
+// -----------------------
+console.log("🔹 DATABASE_URL:", process.env.DATABASE_URL ? "✅ Set" : "❌ Not Set");
+console.log("🔹 JWT_SECRET:", process.env.JWT_SECRET ? "✅ Set" : "❌ Not Set");
+
+// -----------------------
+// Test DB connection on startup
+// -----------------------
 (async () => {
   try {
-    await pool.connect();
+    const client = await pool.connect();
     console.log("✅ Connected to PostgreSQL database");
+    client.release();
   } catch (err) {
-    console.error("❌ Database connection failed:", err);
-    process.exit(1); // Exit process if DB connection fails
+    console.error("❌ Database connection failed:", err.message || err);
+    process.exit(1); // Stop server if DB connection fails
   }
 })();
 
@@ -27,6 +36,10 @@ app.use(express.json());
 app.post("/signup", async (req, res) => {
   const { username, email, password } = req.body;
   try {
+    if (!username || !email || !password) {
+      return res.status(400).json({ error: "All fields required" });
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const result = await pool.query(
@@ -36,7 +49,7 @@ app.post("/signup", async (req, res) => {
 
     res.json({ message: "User registered successfully", user: result.rows[0] });
   } catch (err) {
-    console.error(err);
+    console.error("Signup error:", err.message || err);
     res.status(400).json({ error: "Username or email already exists" });
   }
 });
@@ -47,29 +60,29 @@ app.post("/signup", async (req, res) => {
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
+    if (!email || !password) return res.status(400).json({ error: "Email & password required" });
+
     const result = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
-    if (result.rows.length === 0)
-      return res.status(400).json({ error: "Invalid email" });
+    if (result.rows.length === 0) return res.status(400).json({ error: "Invalid email" });
 
     const user = result.rows[0];
     const validPassword = await bcrypt.compare(password, user.password_hash);
-    if (!validPassword)
-      return res.status(400).json({ error: "Invalid password" });
+    if (!validPassword) return res.status(400).json({ error: "Invalid password" });
 
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
+    if (!process.env.JWT_SECRET) {
+      console.error("❌ JWT_SECRET not set!");
+      return res.status(500).json({ error: "Server configuration error" });
+    }
+
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
     res.json({
       message: "Login successful",
       token,
-      user: {
-        id: user.id,
-        username: user.username,
-      },
+      user: { id: user.id, username: user.username },
     });
   } catch (err) {
-    console.error(err);
+    console.error("Login error:", err.message || err);
     res.status(500).json({ error: "Server error" });
   }
 });
@@ -97,7 +110,7 @@ app.get("/api/gamedata/random", async (req, res) => {
       res.status(404).json({ success: false, error: "No new data available." });
     }
   } catch (error) {
-    console.error("Error fetching game data:", error);
+    console.error("Error fetching game data:", error.message || error);
     res.status(500).json({ success: false, error: "Internal server error." });
   }
 });
@@ -131,7 +144,7 @@ app.put("/api/users/score", async (req, res) => {
       newScore: result.rows[0].score,
     });
   } catch (err) {
-    console.error("Error updating score:", err);
+    console.error("Error updating score:", err.message || err);
     res.status(500).json({ error: "Internal server error" });
   }
 });
@@ -158,7 +171,7 @@ app.get("/api/users/me", async (req, res) => {
 
     res.json({ success: true, user: result.rows[0] });
   } catch (err) {
-    console.error("Error fetching user data:", err);
+    console.error("Error fetching user data:", err.message || err);
     res.status(401).json({ error: "Invalid token" });
   }
 });
@@ -167,6 +180,6 @@ app.get("/api/users/me", async (req, res) => {
 // Start Server
 // -----------------------
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () =>
-  console.log(`Server running on http://localhost:${PORT}`)
-);
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
