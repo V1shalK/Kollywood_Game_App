@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function openPopup(event) {
-            currentCategory = event.target.className;
+            currentCategory = event.target.className;   
             if (guessedCells[currentCategory]) return;
             showMessage(`Enter the ${currentCategory} name:`);
             popupText.style.color = "#000";
