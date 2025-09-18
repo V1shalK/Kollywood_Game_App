@@ -1,4 +1,4 @@
-// game.js (updated for Render backend)
+// game.js (updated with fuzzy matching)
 document.addEventListener('DOMContentLoaded', () => {
     const BASE_URL = "https://kollywood-game-backend.onrender.com";
     
@@ -151,6 +151,29 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.song').textContent = Array.isArray(correctData.song) ? correctData.song[0][0].toUpperCase() : correctData.song[0].toUpperCase();
     }
 
+    // --- Fuzzy Matching Helper ---
+    function levenshtein(a, b) {
+        const dp = Array.from({ length: a.length + 1 }, () => Array(b.length + 1).fill(0));
+        for (let i = 0; i <= a.length; i++) dp[i][0] = i;
+        for (let j = 0; j <= b.length; j++) dp[0][j] = j;
+
+        for (let i = 1; i <= a.length; i++) {
+            for (let j = 1; j <= b.length; j++) {
+                if (a[i - 1] === b[j - 1]) dp[i][j] = dp[i - 1][j - 1];
+                else dp[i][j] = 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+            }
+        }
+        return dp[a.length][b.length];
+    }
+
+    function isSimilar(a, b, threshold = 0.85) {
+        a = a.toLowerCase().trim();
+        b = b.toLowerCase().trim();
+        const distance = levenshtein(a, b);
+        const similarity = 1 - distance / Math.max(a.length, b.length);
+        return similarity >= threshold;
+    }
+
     function checkGuess() {
         const guess = userInput.value.trim();
         if (!guess) {
@@ -158,7 +181,9 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         let correctAnswer = correctData[currentCategory];
-        if (guess.toUpperCase() === correctAnswer.toUpperCase()) {
+
+        // ✅ Now using fuzzy matching
+        if (isSimilar(guess, correctAnswer)) {
             popupText.innerText = "🎉 Correct!";
             popupText.style.color = "green";
             score += 25;

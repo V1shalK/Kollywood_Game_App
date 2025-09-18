@@ -1,6 +1,6 @@
 // custom-game.js
 document.addEventListener('DOMContentLoaded', () => {
-    const BASE_URL = "https://kollywood-game-backend.onrender.com"; // Add this for future API use
+    const BASE_URL = "https://kollywood-game-backend.onrender.com";
 
     const guessbox = document.querySelector('.Guessbox');
     const popupOverlay = document.getElementById('input-popup');
@@ -44,6 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
         popupOverlay.style.display = 'flex';
         setTimeout(() => popupOverlay.classList.add('visible'), 10);
     });
+
+    popupOverlay.addEventListener('click', (e) => {
+    if (e.target === popupOverlay) { // ✅ only close if clicked on the background, not popup content
+        popupOverlay.classList.remove('visible');
+        setTimeout(() => popupOverlay.style.display = 'none', 300);
+    }
+});
+
 
     submitButton.addEventListener('click', () => {
         const heroInput = document.getElementById('hero-input').value.trim();
@@ -101,6 +109,33 @@ document.addEventListener('DOMContentLoaded', () => {
         let kollyLetters = footer.innerText.split("");
         let strikeIndex = 0;
 
+        // ✅ Levenshtein Distance Function
+        function levenshtein(a, b) {
+            const dp = Array.from({ length: a.length + 1 }, () => Array(b.length + 1).fill(0));
+            for (let i = 0; i <= a.length; i++) dp[i][0] = i;
+            for (let j = 0; j <= b.length; j++) dp[0][j] = j;
+
+            for (let i = 1; i <= a.length; i++) {
+                for (let j = 1; j <= b.length; j++) {
+                    if (a[i - 1] === b[j - 1]) dp[i][j] = dp[i - 1][j - 1];
+                    else dp[i][j] = 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+                }
+            }
+            return dp[a.length][b.length];
+        }
+         
+        function isSimilar(a, b, threshold = 0.8) {
+            a = a.toLowerCase().trim();
+            b = b.toLowerCase().trim();
+            const distance = levenshtein(a, b);
+            const similarity = 1 - distance / Math.max(a.length, b.length);
+
+            if (Math.max(a.length, b.length) <= 4) {
+                return similarity >= 0.6;
+            }
+            return similarity >= threshold;
+        }
+
         // Create popup dynamically
         const popup = document.createElement('div');
         popup.id = 'popup';
@@ -117,12 +152,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 padding: 40px 50px;
                 border-radius: 20px;
                 display: flex; flex-direction: column;
-                align-items: center; gap: 15px; min-width: 500px;
+                align-items: center; gap: 15px; min-width: 440px;
                 font-size: 1.2rem; color: #000;
             ">
                 <span id="popup-text" style="font-size: 1.3rem;">Enter your guess:</span>
-                <div style="position: relative; width: 100%; max-width: 400px;">
-                    <input type="text" id="user-input" placeholder="Type your Guess" style="
+                <div  style="position: relative; width: 100%; max-width: 400px;">
+                    <input class="guess-input" type="text" id="user-input" placeholder="Type your Guess" style="
                         width: 100%; font-size: 1.5rem; padding: 12px 20px;
                         border-radius: 24px; border: none; outline: none;
                     ">
@@ -190,8 +225,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            let correctAnswer = correctData[currentCategory];
-            if (guess.toUpperCase() === correctAnswer.toUpperCase()) {
+            const correctAnswer = correctData[currentCategory];
+
+            if (isSimilar(guess, correctAnswer)) {
                 popupText.innerText = "🎉 Correct!";
                 popupText.style.color = "green";
                 score += 25;

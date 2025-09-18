@@ -4,10 +4,6 @@
 
 }
 
-.Background_image_mode2{
-    background: url("../Assets/Images/Background_mode_screen.jpg") center/cover no-repeat;
-}
-
 .header{
     display: flex;
     justify-content: space-between;
@@ -36,7 +32,7 @@
 }
 
 .mode-option img {
-    width: min(250px, 40vw);  
+    width: min(280px, 40vw);  
     height: auto;
     margin-bottom: 1.5rem;
     border-radius: 15px;
@@ -73,36 +69,21 @@
 }
 
 .next{
-    display: flex;
-    transform: translate(-50%,70%);
-    margin-top: clamp(20px, 5vh, 80px);     
-    width: clamp(80px, 8rem, 150px);
-    height: clamp(80px, 10rem, 150px);
+    position: fixed;        
+    width: 180px;
+    height: 180px;
+    top: 510px;
     background-size: contain;
     cursor: pointer;
-    background: url("../Assets/Images/Next_Button.png") no-repeat center;
+    background: url("../Assets/Images/Mini_Play_Button.png") no-repeat center;
     transition: transform 0.2s ease;
 }
 
 .next:hover{
-    transform: translate(-50%,70%) scale(1.05);
+    transform:scale(1.05);
 }
 
-
-.miniplaybtn {
-    display: flex;
-    transform: translate(-50%,70%);
-    margin-top: clamp(20px,5vh,80px);    
-    width: clamp(80px, 10vw, 160px);
-    height: clamp(80px, 10vw, 160px);
-    background-size: contain;
-    background: url("../Assets/Images/Mini_Play_Button.png") no-repeat center; 
-    cursor: pointer;
-    border: none;
-    
-}
-
-@media (max-width:600px){
+@media (max-width:720px){
     .header{
         flex-direction: column;
         gap: 10px;
@@ -111,5 +92,33 @@
 
     .footer{
         text-align: center;
+    }
+
+    .mode-container{
+        position: relative;
+        top: -80px;
+        display: grid;
+        grid-template-columns: 70px 70px ;
+
+    }
+
+    .next{
+        background-image: url("../Assets/Images/play_btn_mobile.png");
+        width: 150px;
+        height: 150px;
+        top:425px;
+        left: 30%;
+    }
+
+    .mode-option img {
+    width: 100px;  
+    height: auto;
+    margin-bottom: 1.5rem;
+    border-radius: 15px;
+    }
+    
+    .singleplayer,.multiplayer{
+        font-size: 0.8rem;
+        padding: 10px 20px;
     }
 }

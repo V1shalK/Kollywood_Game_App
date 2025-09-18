@@ -1,30 +1,31 @@
-/* ---------------- Game Screen ------------------ */
-
+/* ---------------- Fonts ------------------ */
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
 
-.Background_image{
+/* ---------------- Background ------------------ */
+.Background_image {
     background: url("../Assets/Images/8.jpg") center/cover no-repeat;
-    
 }
 
-.game_main{
+/* ---------------- Layout ------------------ */
+.game_main {
     display: flex;
     justify-content: space-between;
 }
-.Guessbox{
+
+/* ---------------- Guess Box ------------------ */
+.Guessbox {
     cursor: pointer;
-    font-family: 'Russo One', sans-serif ;
+    font-family: 'Russo One', sans-serif;
     padding: 15px 30px; 
     background-color: #D9D9D9;
     color: #1D2D37;
     border-radius: 24px;
     width: 80%;
     max-width: 350px;
-    height: 50px;
     position: absolute;
     left: 50%;
-    top:20px;
-    transform: translateX(-50%) ;
+    top: 20px;
+    transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,98 +33,88 @@
     box-shadow: 4px 4px #404850;
 }
 
-.game_score{
+/* ---------------- Score ------------------ */
+.game_score {
     background-color: #1dc780;
 }
 
-.pause_button{
-    position: absolute;
-    display: flex;
-    background-image: url(../Assets/Images/pause_button.png);
-    border-radius: 50%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: clamp(30px,8vw,50px);
-    height: clamp(30px,8vw,50px);
-    border: none;
-    right: 20px;
-    top: 20px;
-    transition: transform 0.2s ease;
-    cursor: pointer;
-}
-
-.pause_button:hover{
-    transform: scale(1.05);
-}
-
+/* ---------------- Popup Text ------------------ */
 #popup-text {
     font-family: 'Russo One', sans-serif;
     font-size: 1rem;
     color: #F3A12E;
 }
 
+/* ---------------- Timer ------------------ */
 .timer {
-  position: absolute;
-  top: 250px;
-  border: 0; 
-  padding: 20px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+    position: absolute;
+    top: 250px;
+    border: 0; 
+    padding: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
 .timer:hover {
-  transform: scale(1.05);
+    transform: scale(1.05);
 }
 
 .timer_image {
-  height: 170px;
-  width: 175px;
+    height: 170px;
+    width: 175px;
 }
 
-.hint{
+.timer-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: "Russo One", sans-serif;
+    color: #fff;
+    letter-spacing: 0.7rem;
+}
+
+/* ---------------- Hint ------------------ */
+.hint {
     width: 50px;
     height: 50px;
     position: absolute;
     padding: 50px;
     display: flex;
-    top: 210px;
-    right: 10%;
-    border: 1rem;
-    transition: transform 0.2s ease;
+    top: 280px;
+    right: 5%;
     cursor: pointer;
+    background: url(../Assets/Images/hint_before.png) center/cover no-repeat;
+    transition: transform 0.2s ease;
 }
 
-.hint:hover{
+.hint:hover {
     transform: scale(1.05);
 }
 
-.hint_image{
-    height: 150px;
-    width: 250px;
-}
-
-#user-input{
-    
+/* ---------------- User Input ------------------ */
+#user-input {
     font-family: 'Russo One', sans-serif;
     font-size: 0.5rem;
-    font-style: normal;
-    font-weight: 400 ;
+    font-weight: 400;
     color: #94A4B4;
 }
 
-.Plustable{
+/* ---------------- Plus Table ------------------ */
+.Plustable {
     border-collapse: collapse;
     width: 300px;
     height: 300px;
     table-layout: fixed;
     position: absolute;
-    transform: translate(-50%,-50%);
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.Plustable td{
+.Plustable td {
     color: #1dc780;
     width: 50%;
     height: 50%;
@@ -152,6 +143,7 @@
     border-top: 5px solid #D9D9D9;
 }
 
+/* ---------------- Lives ------------------ */
 .Lives {
     position: fixed;
     bottom: 20px;
@@ -162,15 +154,19 @@
     font-weight: bold;
     color: #7edfa8;
     text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-    padding: 20px 50px;
+    padding: 20px 60px;
     z-index: 2;
     text-align: center;
     cursor: default;
     letter-spacing: 10px;
 }
 
-.hero,.heroine,.movie,.song{
-    font-family: 'Russo One',sans-serif;
+/* ---------------- Characters ------------------ */
+.hero,
+.heroine,
+.movie,
+.song {
+    font-family: 'Russo One', sans-serif;
     transition: transform 0.2s ease;
     text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
 }
@@ -178,47 +174,14 @@
 .hero:hover,
 .heroine:hover,
 .movie:hover,
-.song:hover{
+.song:hover {
     transform: scale(1.05);
 }
 
-/* Responsive adjustments */
-@media screen and (max-width: 768px){
-    .Plustable td{
-        font-size: 3rem;
-        height: 60px;
-    }
-    .Guessbox{
-        width: 90%;
-    }
-    .Lives{
-        font-size: 2rem;
-        padding: 10px 20px;
-    }
-}
-
-/* Styles to place numbers on top of the image */
-.timer-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Centers the text perfectly */
-    font-size: 2em;
-    font-weight: bold;
-    font-family: "Russo One", sans-serif;
-    color: #fff;
-    letter-spacing: 0.7rem;
-}
-
-/* Styles for the full-screen 3-second countdown */
+/* ---------------- Countdown Overlay ------------------ */
 #countdown-overlay {
     position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    inset: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -228,37 +191,55 @@
 }
 
 #countdown-number {
-    align-items: center;
-    justify-content: center;
     font-size: 15vw;
     font-weight: bold;
     color: #fff;
 }
 
-/* custom-gamepage popup*/
-/* Styles for the popup overlay, matching the JS style attribute */
+/* ---------------- Start Countdown Overlay ------------------ */
+#start-countdown-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+#start-countdown-number {
+    font-size: 15rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+
+/* ---------------- Popup ------------------ */
 .popup-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background-color: rgba(0,0,0,0.3);
     backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 10;
+    opacity: 0;
     transition: opacity 0.3s ease;
-    opacity: 0; /* Use this to hide it initially */
 }
 
-/* Class to make the popup visible */
 .popup-overlay.visible {
     opacity: 1;
 }
 
-/* Styles for the popup content box, matching the inner JS style */
 .popup-content {
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(8px);
@@ -270,14 +251,12 @@
     justify-content: center;
     gap: 15px;
     min-width: 500px;
-    max-width: 90%;
+    max-width: 70%;
     font-size: 1.2rem;
     color: #000;
 }
 
-/* Style for the input group and button */
 .input-group label {
-
     display: block;
     font-weight: bold;
     margin-bottom: 0.5rem;
@@ -293,7 +272,7 @@
     border-radius: 24px;
     border: none;
     outline: none;
-    box-sizing: border-box; /* Ensures padding is included in the width */
+    box-sizing: border-box;
 }
 
 #submit-custom-words {
@@ -301,7 +280,7 @@
     color: #1D2D37;
     padding: 1rem 2rem;
     border: none;
-    border-radius: 24px;    
+    border-radius: 24px;
     font-size: 1rem;
     cursor: pointer;
     margin-top: 1.5rem;
@@ -313,41 +292,90 @@
     background-color: #559670;
 }
 
-/* Additional styles to make it look cohesive 
-.popup-content h2 {
-    margin-bottom: 1.5rem;
-    color: #333;
-    font-size: 1.6rem;
-} */
+/* ---------------- Responsive ------------------ */
 
-#start-countdown-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.75);
-    display: none; /* Initially hidden */
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-#start-countdown-number {
-    font-size: 15rem; /* Large font size for visibility */
-    font-weight: bold;
-    color: white;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-    animation: pulse 1s infinite alternate;
-}
-
-@keyframes pulse {
-    from {
-        transform: scale(1);
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
     }
-    to {
-        transform: scale(1.1);
+
+    .timer-overlay {
+        font-size: 20px;
+        letter-spacing: 0.3rem;
+    }
+
+    .Plustable {
+        width: 200px;
+        height: 200px;
+    }
+
+    .Plustable td {
+        font-size: 3rem;
+        height: 30px;
+    }
+
+    .Guessbox {
+        top: 65px;
+        width: 70%;
+        font-size: 0.9rem;
+        height: 30px;
+    }
+
+    .game_score {
+        font-size: 0.9rem;
+    }
+
+    .Lives {
+        font-size: 2rem;
+        padding: 10px 60px;
+        white-space: nowrap;
+    }
+
+    .timer {
+        top: 400px;
+        left: 30px;
+        padding: 10px;
+    }
+
+    .timer_image {
+        height: 100px;
+        width: 110px;
+    }
+
+    .hint {
+        top: 415px;
+        right: 25px;
+    }
+
+    .popup-content{
+        padding: 20px 25px;
+        max-height: 70%;
+        min-width: 300px;
+        max-width: 50%;
+        font-size: 0.6rem;
+        gap: 7px;
+    }
+
+    .input-group label{
+        font-size: larger;
+    }
+
+    .input-group input{
+        height: 35px;
+        width: 100%;
+        font-size: 0.8rem;
+    }
+
+    #submit-custom-words{
+        padding: 10px 15px;
+
+    }
+
+    .guess-input{
+        width: 50%;
+
     }
 }
+

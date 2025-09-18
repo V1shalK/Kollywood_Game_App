@@ -36,7 +36,7 @@ body{
     transform: scale(1.05);
 }
 
-@media (max-width:600px){
+@media (max-width:720px){
     .header{
         flex-direction: column;
         gap: 10px;

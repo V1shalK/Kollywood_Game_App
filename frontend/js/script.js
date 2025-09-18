@@ -153,13 +153,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 background: rgba(255,255,255,0.25); 
                 backdrop-filter: blur(8px); 
                 padding: 40px 50px; 
-                border-radius: 20px; 
+                border-radius: 16px; 
                 display: flex; 
                 flex-direction: column; 
                 align-items: center; 
                 justify-content: center; 
                 gap: 15px;
-                min-width: 500px; 
+                min-width: 440px; 
                 max-width: 90%;
                 font-size: 1.2rem;
                 color: #000;
