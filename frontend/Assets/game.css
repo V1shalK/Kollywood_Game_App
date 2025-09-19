@@ -304,11 +304,13 @@
     .timer-overlay {
         font-size: 20px;
         letter-spacing: 0.3rem;
+        top:98%
     }
 
     .Plustable {
         width: 200px;
         height: 200px;
+        top:40%;
     }
 
     .Plustable td {
@@ -340,12 +342,15 @@
     }
 
     .timer_image {
+        position: relative;
         height: 100px;
         width: 110px;
+        top:60px
     }
 
+
     .hint {
-        top: 415px;
+        top: 472px;
         right: 25px;
     }
 

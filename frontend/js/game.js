@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const minutesDisplay = document.getElementById('minutes');
     const secondsDisplay = document.getElementById('seconds');
     let countdown = 3;
-    let totalSeconds = 5 * 60;
+    let totalSeconds = 10 * 60;
 
     const guessedCells = { hero: false, heroine: false, movie: false, song: false };
 
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     popup.innerHTML = `
         <div style="background: rgba(255,255,255,0.25); backdrop-filter: blur(8px); padding: 40px 50px; border-radius: 20px; display: flex; flex-direction: column; align-items: center; gap: 15px; min-width: 500px; max-width: 90%; font-size: 1.2rem; color: #000;">
             <span id="popup-text" style="font-size: 1.3rem;">Enter your guess:</span>
-            <div style="position: relative; width: 100%; max-width: 400px;">
+            <div style="position: relative; width: 80%; max-width: 400px;">
                 <input type="text" id="user-input" placeholder="Type your Guess" style="width: 100%; font-size: 1.5rem; padding: 12px 20px; border-radius: 24px; border: none; outline: none;">
                 <button id="submit-guess" style="position: absolute; top: 50%; right: 0; transform: translateY(-50%); padding: 18px 20px; font-size: 1rem; cursor: pointer; border: none; border-radius: 24px; background-color: #68B087; color: white;">Submit</button>
             </div>

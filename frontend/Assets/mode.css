@@ -104,10 +104,10 @@
 
     .next{
         background-image: url("../Assets/Images/play_btn_mobile.png");
-        width: 150px;
-        height: 150px;
-        top:425px;
-        left: 30%;
+        width: 50px;
+        height: 50px;
+        top:520px;
+        left: 45%;
     }
 
     .mode-option img {

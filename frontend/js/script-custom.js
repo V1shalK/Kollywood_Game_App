@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const minutesDisplay = document.getElementById('minutes');
     const secondsDisplay = document.getElementById('seconds');
     let mainTimerInterval = null;
-    let totalSeconds = 5 * 60;
+    let totalSeconds = 10 * 60;
 
     function startMainTimer() {
         mainTimerDisplay.style.display = 'flex';
