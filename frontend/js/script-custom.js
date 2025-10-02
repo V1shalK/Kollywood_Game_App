@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     popupOverlay.addEventListener('click', (e) => {
-    if (e.target === popupOverlay) { // ✅ only close if clicked on the background, not popup content
+    if (e.target === popupOverlay) { 
         popupOverlay.classList.remove('visible');
         setTimeout(() => popupOverlay.style.display = 'none', 300);
     }
@@ -109,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let kollyLetters = footer.innerText.split("");
         let strikeIndex = 0;
 
-        // ✅ Levenshtein Distance Function
         function levenshtein(a, b) {
             const dp = Array.from({ length: a.length + 1 }, () => Array(b.length + 1).fill(0));
             for (let i = 0; i <= a.length; i++) dp[i][0] = i;
@@ -136,7 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return similarity >= threshold;
         }
 
-        // Create popup dynamically
         const popup = document.createElement('div');
         popup.id = 'popup';
         popup.style.cssText = `
@@ -228,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const correctAnswer = correctData[currentCategory];
 
             if (isSimilar(guess, correctAnswer)) {
-                popupText.innerText = "🎉 Correct!";
+                popupText.innerText = " Correct!";
                 popupText.style.color = "green";
                 score += 25;
                 updateScoreDisplay();
@@ -239,11 +237,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 guessedCells[currentCategory] = true;
 
                 if (Object.values(guessedCells).every(val => val === true)) {
-                    setTimeout(() => endGamePopup("🎉 You guessed all correctly! Play again?"), 500);
+                    setTimeout(() => endGamePopup("You guessed all correctly! Play again?"), 500);
                     return;
                 }
             } else {
-                popupText.innerText = "❌ Wrong!";
+                popupText.innerText = "Wrong!";
                 popupText.style.color = "red";
                 if (strikeIndex < kollyLetters.length) {
                     kollyLetters[strikeIndex] =
@@ -254,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 if (strikeIndex >= kollyLetters.length) {
-                    setTimeout(() => endGamePopup("😢 You lost! Play again?"), 500);
+                    setTimeout(() => endGamePopup("You lost! Play again?"), 500);
                     return;
                 }
             }

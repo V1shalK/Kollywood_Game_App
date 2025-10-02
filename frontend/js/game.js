@@ -1,4 +1,3 @@
-// game.js (updated with fuzzy matching)
 document.addEventListener('DOMContentLoaded', () => {
     const BASE_URL = "https://kollywood-game-backend.onrender.com";
     
@@ -21,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const guessedCells = { hero: false, heroine: false, movie: false, song: false };
 
-    // --- Popup Setup ---
     const popup = document.createElement('div');
     popup.id = 'popup';
     popup.style.cssText = `
@@ -151,7 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.song').textContent = Array.isArray(correctData.song) ? correctData.song[0][0].toUpperCase() : correctData.song[0].toUpperCase();
     }
 
-    // --- Fuzzy Matching Helper ---
     function levenshtein(a, b) {
         const dp = Array.from({ length: a.length + 1 }, () => Array(b.length + 1).fill(0));
         for (let i = 0; i <= a.length; i++) dp[i][0] = i;
@@ -182,7 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         let correctAnswer = correctData[currentCategory];
 
-        // ✅ Now using fuzzy matching
         if (isSimilar(guess, correctAnswer)) {
             popupText.innerText = "🎉 Correct!";
             popupText.style.color = "green";

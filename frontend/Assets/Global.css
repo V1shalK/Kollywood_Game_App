@@ -104,13 +104,11 @@
 }
 
 
-/* Start hidden */
 .hidden {
     opacity: 0;
     transform: translateY(20px);
 }
 
-/* Fade-in effect */
 .fade-in {
     opacity: 1;
     transform: translateY(0);
