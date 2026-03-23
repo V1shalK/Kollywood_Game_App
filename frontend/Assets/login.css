@@ -271,7 +271,7 @@ input {
         padding: 10px 0;
         text-align: center;
     }
-    .form-container button {
+    .overlay-panel button {
         display: none; 
     }
     .mobile-toggle-container button {
